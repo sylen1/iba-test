@@ -10,7 +10,12 @@
         version="2.5">
   <servlet>
     <servlet-name>MainServlet</servlet-name>
-    <servlet-class>cz.iba.test.MainServlet</servlet-class>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/main-servlet-config.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
   </servlet>
 
   <servlet-mapping>
