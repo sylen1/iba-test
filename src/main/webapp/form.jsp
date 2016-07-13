@@ -7,13 +7,14 @@
     <title>Title</title>
 </head>
 <body>
+
 <form:form method="post" modelAttribute="student" action="/form">
     <p>First name:</p>
-    <p><form:input path="firstName" type="text" /></p>
+    <p><form:input path="firstName" type="text" /><span style="color: red;"><form:errors path="firstName"/></span></p>
     <p>Last name:</p>
-    <p><form:input path="lastName" type="text" /></p>
+    <p><form:input path="lastName" type="text" /><span style="color: red;"><form:errors path="lastName"/></span></p>
     <p>Date of birth:</p>
-    <p><form:input path="dateOfBirth" type="text" /></p>
+    <p><form:input path="dateOfBirth" type="text" /><span style="color: red;"><form:errors path="dateOfBirth"/></span></p>
     <p>Sex: </p>
     <select name="sex">
         <c:forEach items="${sexes}" var="var">

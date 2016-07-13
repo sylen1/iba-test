@@ -7,4 +7,10 @@
 
     <context:component-scan base-package="cz.iba.test"/>
     <mvc:annotation-driven/>
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="msg.messages"/>
+    </bean>
+
 </beans>

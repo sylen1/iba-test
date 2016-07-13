@@ -2,13 +2,24 @@ package cz.iba.test;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class Student {
+    @Size(min = 1, max = 60)
+    @Pattern(regexp = "^([^0-9]*)$")
     private String firstName;
+    @Size(min = 1, max = 60)
+    @Pattern(regexp = "^([^0-9]*)$")
     private String lastName;
     @DateTimeFormat(pattern = "dd.MM.yyyy")
+    @Past
+    @NotNull
     private Date dateOfBirth;
+    @NotNull
     private Sex sex;
 
     public Student() {
