@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Title</title>
@@ -9,7 +10,7 @@
 <p><b>Last name:</b></p>
 <p>${student.lastName}</p>
 <p><b>Date of birth:</b></p>
-<p>${student.dateOfBirth}</p>
+<p><fmt:formatDate value="${student.dateOfBirth}" pattern="dd.MM.yyyy "/></p>
 <p><b>Sex:</b></p>
 <p>${student.sex}</p>
 </body>

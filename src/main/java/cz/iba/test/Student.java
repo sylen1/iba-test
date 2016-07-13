@@ -7,8 +7,12 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Student {
+    private static final AtomicInteger GENERATOR = new AtomicInteger(1);
+
+    private int id;
     @Size(min = 1, max = 60)
     @Pattern(regexp = "^([^0-9]*)$")
     private String firstName;
@@ -23,13 +27,16 @@ public class Student {
     private Sex sex;
 
     public Student() {
+        id = GENERATOR.getAndIncrement();
     }
 
-    public Student(String firstName, String lastName, Date dateOfBirth, Sex sex) {
+    public Student(int id, String firstName, String lastName, Date dateOfBirth, Sex sex) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.sex = sex;
+        GENERATOR.getAndIncrement();
     }
 
     public String getFirstName() {
@@ -64,13 +71,47 @@ public class Student {
         this.sex = sex;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
-                "firstName='" + firstName + '\'' +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 ", sex=" + sex +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Student student = (Student) o;
+
+        if (id != student.id) return false;
+        if (firstName != null ? !firstName.equals(student.firstName) : student.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(student.lastName) : student.lastName != null) return false;
+        if (dateOfBirth != null ? !dateOfBirth.equals(student.dateOfBirth) : student.dateOfBirth != null) return false;
+        return sex == student.sex;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
+        result = 31 * result + (sex != null ? sex.hashCode() : 0);
+        return result;
     }
 }
