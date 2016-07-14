@@ -10,8 +10,6 @@ public class StudentServiceListImpl implements StudentService {
 
     public StudentServiceListImpl() {
         database = new LinkedList<>();
-        database.add(new Student(1, "John", "Smith", new Date(), Sex.MALE));
-        database.add(new Student(2, "Angelina", "Jolie", new Date(), Sex.FEMALE));
     }
 
     @Override
@@ -56,5 +54,10 @@ public class StudentServiceListImpl implements StudentService {
     public void update(Student student) {
         database.removeIf(x -> x.getId() == student.getId());
         database.add(student);
+    }
+
+    @Override
+    public void clear() {
+        database.clear();
     }
 }

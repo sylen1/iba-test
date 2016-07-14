@@ -12,4 +12,5 @@ public interface StudentService {
     void remove(int id);
     void removeAll(Collection<Student> students);
     void update(Student student);
+    void clear();
 }
