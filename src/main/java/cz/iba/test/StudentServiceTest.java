@@ -3,23 +3,24 @@ package cz.iba.test;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:test-application-context.xml")
 public class StudentServiceTest {
-    private static int idGenerator;
-    private static StudentService studentService;
-
-    @BeforeClass
-    public static void init(){
-        studentService = new StudentServiceListImpl();
-        idGenerator = 0;
-    }
+    @Autowired
+    @Qualifier("studentDbService")
+    private StudentService studentService;
 
     @Before
     public void before(){
@@ -36,9 +37,8 @@ public class StudentServiceTest {
         String[] lastNames = {"Smith", "Hills", "Johnson"};
         student.setLastName(lastNames[random.nextInt(lastNames.length)]);
 
-        student.setId(idGenerator++);
         student.setDateOfBirth(new Date());
-        student.setSex(random.nextBoolean() ? Sex.MALE : Sex.MALE);
+        student.setSex(random.nextBoolean() ? Sex.MALE : Sex.FEMALE);
 
         return student;
     }

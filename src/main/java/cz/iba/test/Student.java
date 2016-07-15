@@ -2,6 +2,10 @@ package cz.iba.test;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
@@ -9,9 +13,10 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Entity
 public class Student {
-    private static final AtomicInteger GENERATOR = new AtomicInteger(1);
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Size(min = 1, max = 60)
     @Pattern(regexp = "^([^0-9]*)$")
@@ -27,7 +32,7 @@ public class Student {
     private Sex sex;
 
     public Student() {
-        id = GENERATOR.getAndIncrement();
+
     }
 
     public Student(int id, String firstName, String lastName, Date dateOfBirth, Sex sex) {
@@ -36,7 +41,6 @@ public class Student {
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.sex = sex;
-        GENERATOR.getAndIncrement();
     }
 
     public String getFirstName() {

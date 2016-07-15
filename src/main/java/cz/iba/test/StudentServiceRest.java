@@ -1,6 +1,7 @@
 package cz.iba.test;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -11,6 +12,7 @@ import java.util.List;
 public class StudentServiceRest {
 
     @Autowired
+    @Qualifier("studentDbService")
     private StudentService studentService;
 
     @RequestMapping("/all")
