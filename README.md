@@ -1,5 +1,7 @@
 # IBA - test
 
+Solution for each level is in it's own commit, text is in ``tasks.pdf``.
+
 ## Level 1 - GitHub repo
 ```
 :-)
@@ -11,7 +13,7 @@ localhost:8080
 ```
 
 ## Level 3, 4 - Hello IBA! X-times  
-X >= 0, incorrect value sets X to 1
+``X >= 0``, incorrect value sets X to 1
 ```
 localhost:8080/?x={number}
 ```
